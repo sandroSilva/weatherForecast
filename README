@@ -1,0 +1,66 @@
+Previsão de Tempo em AS3
+
+Saudações! 
+Em determinadas vezes da nossa vida profissional surge um trampo em que é necessário colocar uma previsão de tempo em um site em Flash ou em um app em Air, utilizando AS3.
+Inicialmente é necessário encontrar a melhor fonte de previsão de tempo. Pesquisei e encontrei duas opções que são interessantes para serem usadas, pois são baseadas em XML (a opção do Yahoo já é deprecated). 
+
+Previsão do Tempo pelo CPTEC/INPE:
+
+O Centro disponibiliza as informações de Previsão de Tempo no formato XML. 
+Segue abaixo os links dos endereços com os devidos XMLs.
+
+por Estado
+http://servicos.cptec.inpe.br/~rserv/estados/
+
+Por Cidade:
+http://servicos.cptec.inpe.br/XML/cidade/244/previsao.xml
+
+7 dias
+http://servicos.cptec.inpe.br/XML/cidade/7dias/244/previsao.xml
+
+Estendida
+http://servicos.cptec.inpe.br/XML/cidade/244/estendida.xml
+
+Obs.:
+- Os Ids das cidades estão nos arquivos por estados.
+- Informar fonte: CPTEC/INPE.
+
+Como pode ser notado, a do CPTEC/INPE é um XML Oficial que foi disponibilizado para desenvolvedores, mas somente cobre cidades brasileiras. As informações que chegam são limitadas, e você pode conseguir ela completa nesta legenda e com ela você pode completar os dados recebidos no XML. 
+É necessário mudar o ID da cidade, a partir dos XMLs do estado onde está a cidade cuja qual você deseja saber a previsão, repare que cada cidade tem um ID único:
+
+http://servicos.cptec.inpe.br/XML/cidade/ID DA CIDADE/previsao.xml
+No ID da cidade de São Paulo que é 244:
+http://servicos.cptec.inpe.br/XML/cidade/244/previsao.xml 
+
+
+
+Previsão do Tempo pelo Google Weather:
+
+Assim como o Centro, o Google libera sua previsão a partir de XML, porém em um único link ele disponibiliza os mais variados dados.
+
+http://www.google.com/ig/api?weather=São Paulo,São Paulo,Brazil&hl=pt-br
+
+Diferente do XML liberado pelo CPTEC/INPE o liberado pelo Google cobre grande parte das cidades de diversos paises, porém ele não tem nada de oficial, sendo na verdade um XML para ser usado por outros produtos do Google, assim ele pode ser mudado a qualquer momento. No entanto, as informações contidas neste XML são mais completas do que as informações fornecidade pelo CPTEC/IMPE. 
+Para ter o XML de determinada cidade são necessários alguns dados e não é necessária nenhuma codificação própria ou ID de numeração interna, veja o exemplo abaixo:
+
+http://www.google.com/ig/api?weather=NOME CIDADE,NOME ESTADO,NOME PAÍS&hl=IDIOMA
+Para a cidade de São Paulo, fica assim:
+http://www.google.com/ig/api?weather=São Paulo,São Paulo,Brazil&hl=pt-br 
+
+
+
+Exemplo a aplicação:
+
+A grande dificuldade no trabalho com estas duas opções, é no que se refere à conexão do SWF com o XML externo já na Internet, ou seja, o maldito Crossdomain, problema este que às vezes a simples adição e edição de um arquivo crossdomain.xml no servidor de hospedagem não ajuda em nada na solução.
+Por isso é necessário também o suporte de um pequeno e simples arquivo escrito em PHP que vai gerar o XML a partir do link selecionado.
+
+No exemplo que coloco à disposição temos os arquivos tanto para a solução do Impe, quanto para a solução disponibilizada pelo Google.
+
+Exemplo para download e ESTUDO no gitHub.
+
+Note que nestes exemplos eu gero o XML a partir do arquivo em PHP, no AS eu leio as informações, e também baseadas nelas, eu carrego a imagem proviniente de cada serviço, que estão hospedadas ou no Google ou no PTEC/IMPE.
+
+Qualquer dúvida, estou à disposição para esclarecimentos.
+
+
+
