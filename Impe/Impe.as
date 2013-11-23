@@ -25,6 +25,7 @@
 			
 					public function montaTempo(evt:Event):void
 						{
+							
 							tempoXml=XML(carregadorXml.data);
 							
 							previsaoAtual = new PrevisaoTempo();
